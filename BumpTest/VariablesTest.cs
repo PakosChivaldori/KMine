@@ -9,6 +9,7 @@ namespace BumpTest
     public class VariablesTest
     {
         [TestMethod]
+        [Timeout(9999)]
         public void VarTest()
         {
             const string src = "src";
@@ -16,18 +17,37 @@ namespace BumpTest
             const string srcT = "Source";
             const string dstT = "Destionation";
             const string equ = "equ";
+            const string X = "X";
+            const string XT = "XXX";
             var dict = new Dictionary<string, string>();
-            dict.Add("src$$", "src");
+            // Просто спецсимволы
+            dict.Add("src$", "src$");
+            dict.Add("src$$", "src$");
+            dict.Add("$$src", "$src");
+            // Включение переменных
+            dict.Add("$src", srcT);
+            dict.Add("-$src", string.Format(@"-{0}", srcT));
+            dict.Add("$src-", string.Format(@"{0}-", srcT));
+            dict.Add("-$src-", string.Format(@"-{0}-", srcT));
+            dict.Add("$X", XT);
+            dict.Add("-$X", string.Format(@"-{0}", XT));
+            dict.Add("$X-", string.Format(@"{0}-", XT));
+            dict.Add("-$X-", string.Format(@"-{0}-", XT));
+            dict.Add("$X$src", string.Format(@"{0}{1}", XT, srcT));
+            // Ошибки тоже должны не ронять
+            dict.Add("$-", "$-");
 
             Variables v = new Variables();
             v[dst] = dstT;
             v[src] = srcT;
+            v[X] = XT;
             Assert.AreEqual(v[src], srcT);
             Assert.AreEqual(v[dst], dstT);
             foreach (var t in dict)
             {
                 v[equ] = t.Key;
-                Assert.AreEqual(v[equ], t.Value);
+                var tmp = string.Format(@"Source: {0}", t.Key);
+                Assert.AreEqual(t.Value, v[equ], tmp);
             }
         }
     }

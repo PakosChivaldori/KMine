@@ -1,15 +1,66 @@
-set dst   d:\temp\dst\ 1
+// Устанавливаем переменные
+set src c:\temp\src
 
-execute 7zip a -r lib lib\
-update lib.7z d:\temp\dst\
-set lib $dst\lib.7z
-set lib-version @lib\Emgu.CV.dll
+// Проверка флага
+if ! exists $src\update stop
+remove $src update
 
-execute 7zip a -r exe exe\
-update exe.7z d:\temp\dst\
-set exe $dst\exe.7z
-set exe-version @exe\kmine.exe
+set upload c:\temp\upload
 
-copy kmine.exe.config $dst
+set dst c:\temp\dst
+set 7z 7z a -r -bd
 
-echo $dst
+update * $upload\lib $src\lib
+update * $upload\lib\x86 $src\lib\x86
+
+set updated->libupdated
+
+update * $upload\exe $src\exe
+
+set updated->exeupdated
+
+echo Copy from $src to $dst
+
+// Создаём пакет библиотек
+set lib lib.7z
+if ! exists $src\$lib goto yeslib
+if ! $libupdated goto nolib
+remove $src $lib
+yeslib:
+cd $src\lib\
+execute $7z $src\lib
+update $lib $src $dst
+nolib:
+set ver->libversion $src\lib\Emgu.CV.dll
+set date->libdate $src\lib\Emgu.CV.dll
+set size->libsize $src\$lib
+
+// Пакет программы
+set exe exe.7z
+if ! exists $src\$exe goto yesexe
+if ! $exeupdated goto noexe
+remove $src $exe
+yesexe:
+cd $src\exe\
+execute $7z $src\exe
+update $exe $src $dst
+noexe:
+set ver->exeversion $src\exe\kmine.exe
+set date->exedate $src\exe\kmine.exe
+set size->exesize $src\$exe
+
+// Пакет конфига
+set conf kmine.exe.config
+update $conf $src $dst
+set datever->confversion $dst\$conf
+set date->confdate $dst\$conf
+set size->confsize $src\$conf
+
+// Формируем файл со списком
+template template.template $dst\mine.html
+
+echo $libversion $libdate $libsize $lib
+echo $exeversion $exedate $exesize $exe
+echo $confversion $confdate $confsize $conf
+
+echo L=$libupdated E=$exeupdated

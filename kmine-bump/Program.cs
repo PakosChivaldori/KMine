@@ -11,6 +11,7 @@ namespace kmine_bump
     {
         static void Main(string[] args)
         {
+            // Читаем, парсим, выполняем
             var bs = File.ReadAllLines(@"bump.script");
             Script s = new Script();
             foreach (var q in bs)

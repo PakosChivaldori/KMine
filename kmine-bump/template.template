@@ -1,0 +1,8 @@
+<html>
+<table border=1>
+<tr><td>Link</td><td>Version</td><td>Date</td><td>Size</td></tr>
+<tr><td><a href=$exe>Exe</a></td><td>$exeversion</td><td>$exedate</td><td>$exesize</td></tr>
+<tr><td><a href=$lib>Lib</a></td><td>$libversion</td><td>$libdate</td><td>$libsize</td></tr>
+<tr><td><a href=kmine.exe.config>Config</a></td><td>$confversion</td><td>$confdate</td><td>$confsize</td></tr>
+</table>
+</html>
