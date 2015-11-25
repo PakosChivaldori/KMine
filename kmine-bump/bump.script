@@ -1,0 +1,15 @@
+set dst   d:\temp\dst\ 1
+
+execute 7zip a -r lib lib\
+update lib.7z d:\temp\dst\
+set lib $dst\lib.7z
+set lib-version @lib\Emgu.CV.dll
+
+execute 7zip a -r exe exe\
+update exe.7z d:\temp\dst\
+set exe $dst\exe.7z
+set exe-version @exe\kmine.exe
+
+copy kmine.exe.config $dst
+
+echo $dst

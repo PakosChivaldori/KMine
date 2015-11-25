@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kmine", "kmine\kmine.csproj", "{3081B4F9-97E8-421F-9C9D-42648B08D938}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{958B386F-C5CE-435B-B4F8-77ED9C696586}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMineTest", "KMineTest\KMineTest.csproj", "{3EB1AB85-1166-4562-867C-3D81C26C0D18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kmine-bump", "kmine-bump\kmine-bump.csproj", "{7060C04C-A169-4FA2-A4BC-2076A417A261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BumpTest", "BumpTest\BumpTest.csproj", "{52363DB5-0BB4-47E0-8236-8DCAF7ADABF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3081B4F9-97E8-421F-9C9D-42648B08D938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3081B4F9-97E8-421F-9C9D-42648B08D938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3081B4F9-97E8-421F-9C9D-42648B08D938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3081B4F9-97E8-421F-9C9D-42648B08D938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB1AB85-1166-4562-867C-3D81C26C0D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB1AB85-1166-4562-867C-3D81C26C0D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB1AB85-1166-4562-867C-3D81C26C0D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB1AB85-1166-4562-867C-3D81C26C0D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7060C04C-A169-4FA2-A4BC-2076A417A261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7060C04C-A169-4FA2-A4BC-2076A417A261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7060C04C-A169-4FA2-A4BC-2076A417A261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7060C04C-A169-4FA2-A4BC-2076A417A261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52363DB5-0BB4-47E0-8236-8DCAF7ADABF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52363DB5-0BB4-47E0-8236-8DCAF7ADABF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52363DB5-0BB4-47E0-8236-8DCAF7ADABF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52363DB5-0BB4-47E0-8236-8DCAF7ADABF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

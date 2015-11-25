@@ -1,0 +1,40 @@
+window=Клондайк
+x-offset=800
+y-offset=100
+max-width=1000
+max-height=1000
+
+// Начало
+@start: 
+// Команды
+// @start работает только в пустом режиме
+mode
+setmode start
+
+@start2:
+mode start
+match @leonsio
+setmode entermine
+
+@firststep:
+mode start
+match @enter
+position center
+click
+setmode entermine
+
+@inmine:
+mode entermine
+match @luck
+position center
+click
+
+@fieldsetup:
+mode entermine
+detectfield
+fielddetected
+setmode play
+
+@ingame:
+mode play
+fieldcells
