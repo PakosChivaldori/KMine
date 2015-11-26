@@ -21,7 +21,7 @@ namespace kmine
             Shaft[] shafts = new[] { 
                                  new Shaft("Леонсио", "leonsio", 13, new Point(-96,169), new Size(450,350)),
                                  //!!!! переделать размеры и количество
-                                 new Shaft("Ухта", "uhta", 17, new Point(-96,169), new Size(450,350))
+                                 new Shaft("Ухта", "uhta", 17, new Point(-88,48), new Size(450,350))
                              };
             foreach (var s in shafts)
             {
@@ -123,6 +123,7 @@ namespace kmine
             nums = new GImage[10];
             nums[1] = ToGray(global::kmine.Properties.Resources._1);
             nums[2] = ToGray(global::kmine.Properties.Resources._2);
+            nums[3] = ToGray(global::kmine.Properties.Resources._3);
         }
 
         GImage ToGray(GImage src)
@@ -145,7 +146,7 @@ namespace kmine
         {
             state.Image.ROI = ScriptState.FieldRectangle;
             var i = ToGray(state.Image);
-            i.Save("2.bmp");
+            var ok = false;
 
             for (int y = 0; y < ScriptState.FieldSize.Height; ++y)
                 for (int x = 0; x < ScriptState.FieldSize.Width; ++x)
@@ -163,12 +164,16 @@ namespace kmine
                             {
                                 var r = i.Find(nums[n], Point.Empty);
                                 if (!r.IsEmpty)
+                                {
                                     state[x, y].Number = n >= 0 && n <= 9 ? n : n; // !!!! случай флага и незанятой клетки
+                                    ok = true;
+                                }
                             }
                         }
                     }
                     else state[x, y].Number = -1;
                 }
+            if (ok) state.ActionDone = true;
         }
     }
 }
