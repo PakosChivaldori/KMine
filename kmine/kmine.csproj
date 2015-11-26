@@ -21,7 +21,7 @@
     <AssemblyFileVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyInfoVersionSettings>
     <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
-    <AssemblyVersion>0.0.1.94</AssemblyVersion>
+    <AssemblyVersion>0.0.1.128</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -172,6 +172,7 @@
     <None Include="Resources\match\luck.png" />
     <None Include="Resources\match\thnx.png" />
     <Content Include="Resources\match\1.png" />
+    <Content Include="Resources\match\2.png" />
     <Content Include="Resources\match\cell.png" />
     <Content Include="Resources\match\leonsio.png" />
     <Content Include="Resources\match\uhta.png" />

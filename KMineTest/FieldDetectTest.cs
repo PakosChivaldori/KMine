@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using kmine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -55,7 +57,7 @@ namespace KMineTest
                 "y-offset=50",
             });
             Script.InitScript(commands);
-            var img = new GImage("src.bmp");
+            var img = new GImage(@"data\leofield.jpg");
             Script s = new Script("test");
             // Грузим исходную картинку, на которой осуществляется поиск
             s.Parse("detectfield");
@@ -64,6 +66,19 @@ namespace KMineTest
             {
                 ScriptState st = new ScriptState(s, img);
                 Run(s, st);
+                StringBuilder sb = new StringBuilder(1024);
+                for (var y = 0; y < ScriptState.FieldSize.Height; ++y)
+                {
+                    for (var x = 0; x < ScriptState.FieldSize.Width; ++x)
+                    {
+                        var c = st[x, y];
+                        var t = c.NotOpened ? '_' : c.Flag ? 'P' : c.Empty ? ' ' : (char)((byte)'0' + c.Number);
+                        sb.Append(t);
+                        sb.Append(' ');
+                    }
+                    sb.Append("\n");
+                }
+                File.WriteAllText("out.txt", sb.ToString());
             }
         }
     }

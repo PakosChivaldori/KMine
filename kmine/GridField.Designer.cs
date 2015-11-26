@@ -40,6 +40,7 @@
             this.imgs.TransparentColor = System.Drawing.Color.Transparent;
             this.imgs.Images.SetKeyName(0, "Flag.png");
             this.imgs.Images.SetKeyName(1, "1.png");
+            this.imgs.Images.SetKeyName(2, "2.png");
             // 
             // GridField
             // 

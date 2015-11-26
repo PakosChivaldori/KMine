@@ -19,8 +19,9 @@ namespace kmine
         public void Action(ScriptState state)
         {
             Shaft[] shafts = new[] { 
-                                 new Shaft("Леонсио", "leonsio", 13, new Point(-96,169), new Size(450,350))
-
+                                 new Shaft("Леонсио", "leonsio", 13, new Point(-96,169), new Size(450,350)),
+                                 //!!!! переделать размеры и количество
+                                 new Shaft("Ухта", "uhta", 17, new Point(-96,169), new Size(450,350))
                              };
             foreach (var s in shafts)
             {
@@ -115,12 +116,35 @@ namespace kmine
         public string Name { get; set; }
         public Config Cfg { get; set; }
         public bool Parse(string data) { return true; }
+        GImage[] nums;
 
-        public FieldCells(string name, Config cfg) { Name = name; Cfg = cfg; }
+        public FieldCells(string name, Config cfg) { 
+            Name = name; Cfg = cfg;
+            nums = new GImage[10];
+            nums[1] = ToGray(global::kmine.Properties.Resources._1);
+            nums[2] = ToGray(global::kmine.Properties.Resources._2);
+        }
+
+        GImage ToGray(GImage src)
+        {
+            return new GImage(src.InRange(new Emgu.CV.Structure.Gray(0), new Emgu.CV.Structure.Gray(100)).Bitmap);
+        }
+
+        GImage ToGray(Bitmap bmp)
+        {
+            Bitmap x = new Bitmap(bmp.Size.Width, bmp.Size.Height);
+            using (var g = Graphics.FromImage(x))
+            {
+                g.Clear(Color.Black);
+                g.DrawImage(bmp, Point.Empty);
+            }
+            return ToGray(new GImage(x));
+        }
+
         public void Action(ScriptState state)
         {
             state.Image.ROI = ScriptState.FieldRectangle;
-            var i = state.Image.InRange(new Emgu.CV.Structure.Gray(0), new Emgu.CV.Structure.Gray(100));
+            var i = ToGray(state.Image);
             i.Save("2.bmp");
 
             for (int y = 0; y < ScriptState.FieldSize.Height; ++y)
@@ -133,8 +157,17 @@ namespace kmine
                     h.MatND.ManagedArray.CopyTo(valHist, 0);
                     if (valHist[0] < 1000)
                     {
-                        state[x, y].Number = 1;
+                        for (int n = 0; n < nums.Length; ++n)
+                        {
+                            if (nums[n] != null)
+                            {
+                                var r = i.Find(nums[n], Point.Empty);
+                                if (!r.IsEmpty)
+                                    state[x, y].Number = n >= 0 && n <= 9 ? n : n; // !!!! случай флага и незанятой клетки
+                            }
+                        }
                     }
+                    else state[x, y].Number = -1;
                 }
         }
     }

@@ -175,7 +175,7 @@ namespace kmine
         public static Size FieldSize
         {
             get { return fieldSize; }
-            set { var flag = !fieldSize.Equals(value); fieldSize = value; if (flag) SizeChanged(); }
+            set { var flag = !fieldSize.Equals(value); if (flag) { fieldSize = value; SizeChanged(); } }
         }
         // Имя шахты
         public static string Shaft { get; set; }
@@ -257,7 +257,7 @@ namespace kmine
         {
             var l = new List<GridCell>();
             foreach (var c in Cells)
-                if (c.Free) l.Add(c);
+                if (c.NotOpened) l.Add(c);
             return l;
         }
     }

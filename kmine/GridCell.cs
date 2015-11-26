@@ -26,14 +26,14 @@ namespace kmine
         /// <summary>
         /// Ещё не открыта
         /// </summary>
-        public bool Free { get { return Number == 0; } }
+        public bool NotOpened { get { return Number == -1; } }
         /// <summary>
         /// Пуста
         /// </summary>
-        public bool Empty { get { return Number == -1; } set { if (value) Number = -1; } }
+        public bool Empty { get { return Number == 0; } set { if (value) Number = 0; } }
         public GridCell()
         {
-            Number = 0;
+            Number = -1;
         }
     }
 }
