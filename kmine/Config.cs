@@ -23,11 +23,19 @@ namespace kmine
 
         public Config()
         {
-            xOffset = 0;
-            yOffset = 0;
+            xOffset = GetOffset(global::kmine.Properties.Settings.Default.x_offset);
+            yOffset = GetOffset(global::kmine.Properties.Settings.Default.y_offset);
             maxWidth = 0;
             maxHeight = 0;
             images = new Hashtable();
+        }
+
+        private int GetOffset(string p)
+        {
+            int x = -1;
+            if (string.IsNullOrWhiteSpace(p) || p.ToLower().Equals("auto") || !int.TryParse(p, out x))
+                return -1;
+            return x;
         }
 
         /// <summary>

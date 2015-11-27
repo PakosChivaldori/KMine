@@ -66,8 +66,26 @@ namespace kmine
             this.Left = rightmost.WorkingArea.Right - this.Width;
 
             scripts = Script.LoadScript(config, commands);
+
             if (GImage.FindProper(config))
             {
+                if (config.xOffset < 0 || config.yOffset < 0)
+                {
+                    var setX = false;
+                    var setY = false;
+                    if (config.xOffset < 0)
+                    {
+                        setX = true;
+                        config.xOffset = (int)((double)(rightmost.WorkingArea.Width - config.maxWidth) / 2 * 0.9);
+                    }
+                    if (config.yOffset < 0)
+                    {
+                        setY = true;
+                        config.yOffset = 30;
+                    }
+                    var bmp = GImage.Capture(config);
+                    GImage.FindFlash(config, setX, setY, bmp);
+                }
                 tm.Enabled = true;
             }
             else Program.log.Error("No window found");

@@ -19,6 +19,7 @@ namespace kmine
     {
         public GImage(Bitmap img) : base(img) { }
         public GImage(string img) : base(img) { }
+
         /// <summary>
         /// Поиск совпадений
         /// </summary>
@@ -42,6 +43,11 @@ namespace kmine
 
             return match;
         }
+
+        /// <summary>
+        /// Захват экрана
+        /// </summary>
+        /// <param name="config">Конфиг для уточнения размера и координат окна захвата</param>
         static public Bitmap Capture(Config config)
         {
             var bmp = new Bitmap(config.maxWidth, config.maxHeight);
@@ -51,7 +57,6 @@ namespace kmine
             bmp.Save("1.bmp");
             return bmp;
         }
-
 
         [DllImport("user32.dll")]
         static extern IntPtr SetForegroundWindow(IntPtr hWnd);
@@ -74,5 +79,22 @@ namespace kmine
             return false;
         }
 
+        /// <summary>
+        /// Найти окно с флешем
+        /// </summary>
+        /// <param name="config">Ссылка на конфиг</param>
+        /// <param name="setX">устанавливать x</param>
+        /// <param name="setY">устанавливать y</param>
+        /// <param name="bmp">скриншот</param>
+        public static void FindFlash(Config config, bool setX, bool setY, Bitmap bmp)
+        {
+            var r = new GImage(bmp).Find(new GImage(global::kmine.Properties.Resources.klohead), Point.Empty);
+            if (!r.IsEmpty)
+            {
+                r.Offset(-270, -20);
+                if (setX) config.xOffset = r.Left;
+                if (setY) config.yOffset = r.Top;
+            }
+        }
     }
 }

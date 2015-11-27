@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Text;
+using Emgu.CV.Structure;
 using kmine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -80,6 +81,25 @@ namespace KMineTest
                 }
                 File.WriteAllText("out.txt", sb.ToString());
             }
+        }
+        [TestMethod]
+        public void FlashDetectTest()
+        {
+            var config = new TestConfig();
+            Commands commands = new Commands(config);
+            config.ReadConfig(new string[] {
+                "x-offset=702",
+                "y-offset=30",
+                "max-width=1000",
+                "max-height=800"
+            });
+            var img = new Bitmap("data\\nofield.png");
+            GImage.FindFlash(config, true, true, img);
+            var r = new GImage(img);
+            r.Draw(new Rectangle(config.xOffset, config.yOffset, config.maxWidth, config.maxHeight), new Gray(128), 2);
+            Assert.AreEqual(832, config.xOffset, "Detect X");
+            Assert.AreEqual(130, config.yOffset, "Detect Y");
+            // r.Save("0.bmp");
         }
     }
 }

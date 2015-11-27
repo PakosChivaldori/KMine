@@ -20,7 +20,6 @@ namespace kmine
         {
             Shaft[] shafts = new[] { 
                                  new Shaft("Леонсио", "leonsio", 13, new Point(-96,169), new Size(450,350)),
-                                 //!!!! переделать размеры и количество
                                  new Shaft("Ухта", "uhta", 17, new Point(-88,48), new Size(450,350))
                              };
             foreach (var s in shafts)

@@ -1,8 +1,6 @@
 window=Клондайк
-x-offset=800
-y-offset=100
 max-width=1000
-max-height=1000
+max-height=800
 
 // Начало
 @start: 
