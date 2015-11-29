@@ -88,8 +88,6 @@ namespace KMineTest
             var config = new TestConfig();
             Commands commands = new Commands(config);
             config.ReadConfig(new string[] {
-                "x-offset=702",
-                "y-offset=30",
                 "max-width=1000",
                 "max-height=800"
             });
@@ -97,9 +95,9 @@ namespace KMineTest
             GImage.FindFlash(config, true, true, img);
             var r = new GImage(img);
             r.Draw(new Rectangle(config.xOffset, config.yOffset, config.maxWidth, config.maxHeight), new Gray(128), 2);
+            //r.Save("0.bmp");
             Assert.AreEqual(832, config.xOffset, "Detect X");
             Assert.AreEqual(130, config.yOffset, "Detect Y");
-            // r.Save("0.bmp");
         }
     }
 }

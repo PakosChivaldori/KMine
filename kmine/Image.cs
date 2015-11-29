@@ -89,7 +89,6 @@ namespace kmine
         public static void FindFlash(Config config, bool setX, bool setY, Bitmap bmp)
         {
             var r = new GImage(bmp).Find(new GImage(global::kmine.Properties.Resources.klohead), Point.Empty);
-            bmp.Save("x.bmp");
             if (!r.IsEmpty)
             {
                 r.Offset(-270, -20);

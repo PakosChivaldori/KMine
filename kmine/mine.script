@@ -9,10 +9,16 @@ max-height=800
 mode
 setmode start
 
-@start2:
+@startleo:
 mode start
 match @leonsio
 setmode entermine
+
+@startspeak:
+mode start
+match @speak
+position center
+click
 
 @firststep:
 mode start
@@ -20,6 +26,12 @@ match @enter
 position center
 click
 setmode entermine
+
+@enterbanner:
+mode entermine
+match @good
+position center
+click
 
 @inmine:
 mode entermine

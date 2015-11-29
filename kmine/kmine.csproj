@@ -21,7 +21,7 @@
     <AssemblyFileVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.IncrementOnDemand.Increment</AssemblyInfoVersionSettings>
     <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
-    <AssemblyVersion>0.0.1.154</AssemblyVersion>
+    <AssemblyVersion>0.0.1.157</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -176,6 +176,7 @@
     <Content Include="Resources\match\3.png" />
     <Content Include="Resources\match\klohead.png" />
     <Content Include="Resources\match\leonsio.png" />
+    <Content Include="Resources\match\speak.png" />
     <Content Include="Resources\match\uhta.png" />
     <Content Include="x86\cudart32_65.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
